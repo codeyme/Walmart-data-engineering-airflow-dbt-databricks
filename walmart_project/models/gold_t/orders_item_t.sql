@@ -1,13 +1,13 @@
 {{
     config(
         materialized='incremental',
-        unique_key='employee_id'
+        unique_key='order_items_id'
     )
 }}
 
 
 select *, current_timestamp() as processed_at
- from {{source('walmart_databricks', 'employees')}}
+ from {{source('walmart_databricks', 'order_items')}}
 where is_active = 'Y'
 
 {% if is_incremental() %}

@@ -7,9 +7,11 @@ models:
             - unique
         - name: price
           data_tests:
-            - greater_than: 0
-
-    - name: orders_t
+            - not null
+            - unique:
+                config:
+                  where: "price > 0"
+  - name: orders_t
     columns:
         - name: order_id
           data_tests:
